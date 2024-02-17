@@ -4,7 +4,7 @@ from tkinter import Tk, Canvas
 
 
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
 
@@ -14,13 +14,13 @@ class Line:
         self.point1 = point1
         self.point2 = point2
 
-    def draw(self, canvas, fill_color):
+    def draw(self, canvas: Canvas, fill_color: str):
         canvas.create_line(self.point1.x, self.point1.y, self.point2.x, self.point2.y, fill=fill_color, width=2)
         canvas.pack()
 
 
 class Window:
-    def __init__(self, width, height):
+    def __init__(self, width: int, height: int):
         self.width = width
         self.height = height
         self.__root = Tk(className="mazeSolver")
@@ -41,7 +41,7 @@ class Window:
     def close(self):
         self.running = False
 
-    def draw_line(self, line: Line, fill_color):
+    def draw_line(self, line: Line, fill_color: str):
         line.draw(self.canvas, fill_color)
 
 
@@ -71,10 +71,7 @@ class Cell:
         self.__win.draw_line(Line(Point(self.__x1, self.__y2), Point(self.__x2, self.__y2)), fill_color)
 
     def draw_move(self, to_cell, undo=False):
-        if undo:
-            fill_color = "gray"
-        else:
-            fill_color = "red"
+        fill_color = "gray" if undo else "red"
         own_x = (self.__x1 + self.__x2) // 2
         own_y = (self.__y1 + self.__y2) // 2
         other_x = (to_cell.__x1 + to_cell.__x2) // 2
