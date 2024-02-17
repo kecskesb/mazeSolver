@@ -2,10 +2,10 @@ from classes import Window, Maze
 
 
 def main():
-    win = Window(810, 610)
+    win = Window(1610, 1210)
 
-    maze = Maze(5, 5, 20, 15, 40, 40, win)
-    print(maze.solve())
+    maze = Maze(5, 5, 40, 30, 40, 40, win)
+    maze.solve()
 
     win.wait_for_close()
 

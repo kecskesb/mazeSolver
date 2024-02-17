@@ -61,25 +61,13 @@ class Cell:
     def draw(self):
         black = "black"
         white = "#d9d9d9"
-        if self.has_left_wall:
-            fill_color = black
-        else:
-            fill_color = white
+        fill_color = black if self.has_left_wall else white
         self.__win.draw_line(Line(Point(self.__x1, self.__y1), Point(self.__x1, self.__y2)), fill_color)
-        if self.has_right_wall:
-            fill_color = black
-        else:
-            fill_color = white
+        fill_color = black if self.has_right_wall else white
         self.__win.draw_line(Line(Point(self.__x2, self.__y1), Point(self.__x2, self.__y2)), fill_color)
-        if self.has_top_wall:
-            fill_color = black
-        else:
-            fill_color = white
+        fill_color = black if self.has_top_wall else white
         self.__win.draw_line(Line(Point(self.__x1, self.__y1), Point(self.__x2, self.__y1)), fill_color)
-        if self.has_bottom_wall:
-            fill_color = black
-        else:
-            fill_color = white
+        fill_color = black if self.has_bottom_wall else white
         self.__win.draw_line(Line(Point(self.__x1, self.__y2), Point(self.__x2, self.__y2)), fill_color)
 
     def draw_move(self, to_cell, undo=False):
@@ -117,11 +105,11 @@ class Maze:
         for col in self._cells:
             for cell in col:
                 cell.draw()
-                self._animate()
+        self._animate()
 
     def _animate(self):
         self.win.redraw()
-        time.sleep(0.005)
+        time.sleep(0.03)
 
     def _break_entrance_and_exit(self):
         entrance_cell = self._cells[0][0]
